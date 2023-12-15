@@ -12,10 +12,18 @@ import com.jacaranda.employeeCompany.repository.CompanyRepository;
 public class CompanyService {
 
 	@Autowired
-	private CompanyRepository companyRepository;
+	private CompanyRepository cr;
 
 	public List<Company> getCompanies() {
-		return companyRepository.findAll();
+		return cr.findAll();
+	}
+	
+	public void addCompany(Company c) {
+		cr.save(c);
+	}
+	
+	public void deleteCompany(Company c) {
+		cr.delete(c);
 	}
 
 }

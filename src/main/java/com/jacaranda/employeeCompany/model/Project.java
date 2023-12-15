@@ -10,54 +10,37 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "company")
-public class Company {
+@Table(name = "project")
+public class Project {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@NotNull
 	private String name;
 	@NotNull
-	private String address;
-	private String city;
-
+	private String budget;
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public String getAddress() {
-		return address;
+	public String getBudget() {
+		return budget;
 	}
-
-	public void setAddress(String address) {
-		this.address = address;
+	public void setBudget(String budget) {
+		this.budget = budget;
 	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -66,8 +49,11 @@ public class Company {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Company other = (Company) obj;
+		Project other = (Project) obj;
 		return Objects.equals(id, other.id);
 	}
+	
+
+	
 
 }
