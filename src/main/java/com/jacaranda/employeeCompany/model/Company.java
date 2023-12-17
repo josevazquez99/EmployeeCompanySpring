@@ -1,11 +1,13 @@
 package com.jacaranda.employeeCompany.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -20,6 +22,8 @@ public class Company {
 	@NotNull
 	private String address;
 	private String city;
+	@OneToMany(mappedBy = "company")
+	private List<Employee> Employees;
 
 	public Integer getId() {
 		return id;
@@ -69,5 +73,12 @@ public class Company {
 		Company other = (Company) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	@Override
+	public String toString() {
+		return "Company [name=" + name + "]";
+	}
+
+
 
 }

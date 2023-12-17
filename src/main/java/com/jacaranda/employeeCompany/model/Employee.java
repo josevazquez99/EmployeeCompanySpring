@@ -3,6 +3,7 @@ package com.jacaranda.employeeCompany.model;
 import java.sql.Date;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,31 +11,27 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "employee")
 public class Employee {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@NotNull
+	
 	private String firstName;
-	@NotNull
 	private String lastName;
-	@Email(message="El email debe ser valido")
 	private String email;
-	@NotNull
 	private String gender;
 	private Date dateOfBirth;
 	
 	@ManyToOne
-	@JoinColumn(name="idCompany")
-	private Company idCompany;
-	
+	@JoinColumn(name = "idCompany")
+	private Company company;
 	private String password;
 	private String role;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -71,11 +68,11 @@ public class Employee {
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	public Company getIdCompany() {
-		return idCompany;
+	public Company getCompany() {
+		return company;
 	}
-	public void setIdCompany(Company idCompany) {
-		this.idCompany = idCompany;
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 	public String getPassword() {
 		return password;
@@ -89,6 +86,7 @@ public class Employee {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -104,8 +102,5 @@ public class Employee {
 		Employee other = (Employee) obj;
 		return Objects.equals(id, other.id);
 	}
-
-
-
-
+	
 }
